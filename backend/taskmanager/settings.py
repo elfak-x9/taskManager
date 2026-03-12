@@ -131,3 +131,9 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
         ]
         }
+CORS_ALLOWED_ORIGINS = [
+    'https://127.0.0.1:9000',
+    'https://localhost:3000',
+]
+
+CORS_ALLOW_CREDENTIALS: True
