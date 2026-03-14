@@ -1,26 +1,37 @@
+import { VStack, Text, Button } from "@chakra-ui/react"
 
-import { Heading, VStack, Text } from "@chakra-ui/react"
+import { useEffect, useState } from "react"
 
-import { useEffect, useState } from "react";
-import { get_tasks } from "../endpoints/api";
+import { get_notes } from "../api/endpoints"
+
+import { useAuth } from "../context/useAuth";
 
 const Menu = () => {
 
-    const [tasks, setTasks] = useState([])
+    const [notes, setNotes] = useState([])
+    const { user, logoutUser } = useAuth();
 
     useEffect(() => {
-        const fetchTasks = async () => {
-            const tasks = await get_tasks()
-            setTasks(tasks)
+        const fetchNotes = async () => {
+            const notes = await get_notes();
+            setNotes(notes)
         }
-        fetchTasks();
+        fetchNotes();
     }, [])
 
+    const handleLogout = async () => {
+        await logoutUser()
+    };
+
     return (
-        <VStack>
-            {tasks.map((task) => {
-                return <Text>{task.description}</Text>
-            })}
+        <VStack alignItems='start'>
+            <Text fontSize='42px' pb='30px'>Welcome {user ? user.username : 'Guest'} 👋</Text>
+            <VStack alignItems='start' pb='50px'>
+                {notes.map((note) => {
+                    return <Text key={note.id} fontSize='22px'>{note.name}</Text>
+                })}
+            </VStack>
+            <Button onClick={handleLogout} colorScheme='red'>Logout</Button>
         </VStack>
     )
 }
