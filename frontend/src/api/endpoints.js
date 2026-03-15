@@ -5,7 +5,6 @@ const BASE_URL = 'http://127.0.0.1:8000/api/'
 const LOGIN_URL = `${BASE_URL}login/`
 const REGISTER_URL = `${BASE_URL}register/`
 const LOGOUT_URL = `${BASE_URL}logout/`
-const NOTES_URL = `${BASE_URL}todos/`
 const AUTHENTICATED_URL = `${BASE_URL}authenticated/`
 
 axios.defaults.withCredentials = true; 
@@ -26,10 +25,6 @@ export const login = async (username, password) => {
     }
 };
 
-export const get_notes = async () => {
-    const response = await axios.get(NOTES_URL, { withCredentials: true });
-    return response.data;
-};
 
 export const logout = async () => {
     const response = await axios.post(LOGOUT_URL, { withCredentials: true });
@@ -42,6 +37,15 @@ export const register = async (username, email, password) => {
 };
 
 export const authenticated_user = async () => {
-    const response = await axios.get(AUTHENTICATED_URL, { withCredentials: true });
+    const response = await axios.post(AUTHENTICATED_URL, { withCredentials: true });
     return response.data
 }
+
+const API = axios.create({
+  baseURL: "http://127.0.0.1:8000/api/"
+});
+
+export const getTasks = () => API.get("tasks/");
+export const createTask = (data) => API.post("tasks/", data);
+export const updateTask = (id) => API.patch(`tasks/${id}/`);
+export const deleteTask = (id) => API.delete(`tasks/${id}/`);
