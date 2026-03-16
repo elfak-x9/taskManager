@@ -49,6 +49,7 @@ cd frontend && npm install
 - Now initialize the servers Use two shell to start the backend and frontend servers
 ```
 cd ../backend/ 
+python manage.py migrate
 python manage.py runserver
 ```
 <b>Note:</b> You should be in python venv to run this command.
