@@ -3,7 +3,7 @@ This is a Task Management app built using Django and React JS. It helps to creat
 <b>Features:</b>
 - CRUD functionality
 - Digitization of tasks
-- Easy to use
+- Easy to use  
 
 ###### Demo Video
 ![Demo Video](assets/demo.gif)
@@ -24,7 +24,7 @@ Following packages are used and required:
 - To Install in your system. First Clone the repository.
 
 ```
-$ git clone https://github.com/elfak-x9/taskManager.git
+$ git clone --depth 1 https://github.com/elfak-x9/taskManager.git
 ```
 
 - GO into the directory taskManager.
